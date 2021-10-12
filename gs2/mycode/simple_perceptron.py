@@ -3,6 +3,7 @@
 '''
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class SimplePerceptron(object):
@@ -82,8 +83,11 @@ if __name__ == '__main__':
     '''
     4. モデルの評価
     '''
-    print('w:', model.w)  # => w: [1.660725   1.49465147]
-    print('b:', model.b)  # => b: -10.0
+    plt.scatter(x2, x1)
+    plt.show()
+
+    print('w:', model.w)  # => w: [2.22951939   2.96727454]
+    print('b:', model.b)  # => b: -13.0
 
     print('(0, 0) =>', model.forward([0, 0]))  # => 0
     print('(5, 5) =>', model.forward([5, 5]))  # => 1
