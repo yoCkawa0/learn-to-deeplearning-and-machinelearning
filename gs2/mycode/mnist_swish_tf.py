@@ -1,5 +1,5 @@
 '''
-4.2.4.2 TensorFlow (MNIST)
+4.3.4.2 Swish - TensorFlow (MNIST)
 '''
 
 import numpy as np
@@ -7,7 +7,7 @@ from sklearn.utils import shuffle
 import tensorflow as tf
 from tensorflow.keras import datasets
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dense, LeakyReLU
 from tensorflow.keras import optimizers
 from tensorflow.keras import losses
 from tensorflow.keras import metrics
@@ -16,9 +16,9 @@ from tensorflow.keras import metrics
 class DNN(Model):
     def __init__(self, hidden_dim, output_dim):
         super().__init__()
-        self.l1 = Dense(hidden_dim, activation='sigmoid')
-        self.l2 = Dense(hidden_dim, activation='sigmoid')
-        self.l3 = Dense(hidden_dim, activation='sigmoid')
+        self.l1 = Dense(hidden_dim, activation=swish)
+        self.l2 = Dense(hidden_dim, activation=swish)
+        self.l3 = Dense(hidden_dim, activation=swish)
         self.l4 = Dense(output_dim, activation='softmax')
 
         self.ls = [self.l1, self.l2, self.l3, self.l4]
@@ -28,6 +28,10 @@ class DNN(Model):
             x = layer(x)
 
         return x
+
+
+def swish(x, beta=1.):
+    return x * tf.nn.sigmoid(beta * x)
 
 
 if __name__ == '__main__':

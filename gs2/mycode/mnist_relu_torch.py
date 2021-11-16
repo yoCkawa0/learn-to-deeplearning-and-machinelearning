@@ -1,5 +1,5 @@
 '''
-4.3.1.2 tanh - PyTorch (MNIST)
+4.3.2.2 ReLU - PyTorch (MNIST)
 '''
 
 import os
@@ -17,11 +17,11 @@ class DNN(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim):
         super().__init__()
         self.l1 = nn.Linear(input_dim, hidden_dim)
-        self.a1 = nn.Tanh()
+        self.a1 = nn.ReLU()
         self.l2 = nn.Linear(hidden_dim, hidden_dim)
-        self.a2 = nn.Tanh()
+        self.a2 = nn.ReLU()
         self.l3 = nn.Linear(hidden_dim, hidden_dim)
-        self.a3 = nn.Tanh()
+        self.a3 = nn.ReLU()
         self.l4 = nn.Linear(hidden_dim, output_dim)
 
         self.layers = [self.l1, self.a1, self.l2, self.a2, self.l3, self.a3, self.l4]
@@ -42,8 +42,7 @@ if __name__ == '__main__':
     1. データの準備
     '''
     root = os.path.join('~', '.torch', 'mnist')
-    transform = transforms.Compose([transforms.ToTensor(),
-                                    lambda x: x.view(-1)])
+    transform = transforms.Compose([transforms.ToTensor(), lambda x: x.view(-1)])
     mnist_train = datasets.MNIST(root=root, download=True, train=True, transform=transform)
     mnist_test = datasets.MNIST(root=root, download=True, train=False, transform=transform)
 

@@ -36,12 +36,9 @@ if __name__ == '__main__':
     '''
     3. モデルの学習
     '''
-    model.compile(optimizer='sgd', loss='categorical_crossentropy',
-                  metrics=['accuracy'])
+    model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy'])
 
-    model.fit(x_train, t_train,
-              epochs=30, batch_size=100,
-              verbose=2)
+    model.fit(x_train, t_train, epochs=30, batch_size=100, verbose=2)
 
     '''
     4. モデルの評価

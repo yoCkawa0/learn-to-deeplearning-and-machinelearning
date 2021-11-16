@@ -1,5 +1,5 @@
 '''
-4.3.1.2 tanh - PyTorch (MNIST)
+4.3.4.2 Swish - PyTorch (MNIST)
 '''
 
 import os
@@ -13,15 +13,24 @@ from torchvision import datasets
 import torchvision.transforms as transforms
 
 
+class Swish(nn.Module):
+    def __init__(self, beta=1.):
+        super().__init__()
+        self.beta = beta
+
+    def forward(self, x):
+        return x * torch.sigmoid(self.beta * x)
+
+
 class DNN(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim):
         super().__init__()
         self.l1 = nn.Linear(input_dim, hidden_dim)
-        self.a1 = nn.Tanh()
+        self.a1 = Swish()
         self.l2 = nn.Linear(hidden_dim, hidden_dim)
-        self.a2 = nn.Tanh()
+        self.a2 = Swish()
         self.l3 = nn.Linear(hidden_dim, hidden_dim)
-        self.a3 = nn.Tanh()
+        self.a3 = Swish()
         self.l4 = nn.Linear(hidden_dim, output_dim)
 
         self.layers = [self.l1, self.a1, self.l2, self.a2, self.l3, self.a3, self.l4]

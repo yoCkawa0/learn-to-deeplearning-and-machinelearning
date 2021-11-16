@@ -1,12 +1,13 @@
 '''
-4.2.4.1 Keras (MNIST)
+4.3.4.2 Swish - Keras (MNIST)
 '''
 
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import datasets
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dense, LeakyReLU
+from tensorflow.keras import backend as K
 
 
 if __name__ == '__main__':
@@ -27,10 +28,14 @@ if __name__ == '__main__':
     '''
     2. モデルの構築
     '''
+    def swish(x, beta=1.):
+        return x * K.sigmoid(beta * x)
+        # return x * tf.nn.sigmoid(beta * x)  # こちらでもOK
+
     model = Sequential()
-    model.add(Dense(200, activation='sigmoid'))
-    model.add(Dense(200, activation='sigmoid'))
-    model.add(Dense(200, activation='sigmoid'))
+    model.add(Dense(200, activation=swish))
+    model.add(Dense(200, activation=swish))
+    model.add(Dense(200, activation=swish))
     model.add(Dense(10, activation='softmax'))
 
     '''

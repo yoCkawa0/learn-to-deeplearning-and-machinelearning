@@ -1,5 +1,5 @@
 '''
-4.2.4.1 Keras (MNIST)
+4.3.2.2 ReLU - Keras (MNIST)
 '''
 
 import numpy as np
@@ -28,9 +28,9 @@ if __name__ == '__main__':
     2. モデルの構築
     '''
     model = Sequential()
-    model.add(Dense(200, activation='sigmoid'))
-    model.add(Dense(200, activation='sigmoid'))
-    model.add(Dense(200, activation='sigmoid'))
+    model.add(Dense(200, activation='relu'))
+    model.add(Dense(200, activation='relu'))
+    model.add(Dense(200, activation='relu'))
     model.add(Dense(10, activation='softmax'))
 
     '''

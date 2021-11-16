@@ -1,5 +1,5 @@
 '''
-4.2.4.2 TensorFlow (MNIST)
+4.3.2.2 ReLU - TensorFlow (MNIST)
 '''
 
 import numpy as np
@@ -16,9 +16,9 @@ from tensorflow.keras import metrics
 class DNN(Model):
     def __init__(self, hidden_dim, output_dim):
         super().__init__()
-        self.l1 = Dense(hidden_dim, activation='sigmoid')
-        self.l2 = Dense(hidden_dim, activation='sigmoid')
-        self.l3 = Dense(hidden_dim, activation='sigmoid')
+        self.l1 = Dense(hidden_dim, activation='relu')
+        self.l2 = Dense(hidden_dim, activation='relu')
+        self.l3 = Dense(hidden_dim, activation='relu')
         self.l4 = Dense(output_dim, activation='softmax')
 
         self.ls = [self.l1, self.l2, self.l3, self.l4]
