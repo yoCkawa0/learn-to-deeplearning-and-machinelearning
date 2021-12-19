@@ -2,6 +2,7 @@ class EarlyStopping:
     '''
     早期終了 (early stopping)
     '''
+
     def __init__(self, patience=0, verbose=0):
         self._step = 0
         self._loss = float('inf')
